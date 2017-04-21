@@ -32,3 +32,9 @@
 5. 启动后端服务，项目根目录下执行 ```node questionnaire```。  
 6. 启动前端服务，项目questionnaire_web目录下执行 ```npm run dev```。  
 7. 打开浏览器，访问 [localhost:8080/#/questionList](http://localhost:8080/#/questionList)。  
+
+## 业务逻辑
+
+## 项目结构
+
+
