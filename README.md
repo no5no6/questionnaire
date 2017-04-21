@@ -27,7 +27,6 @@
         "db": "questionnaire"
       }]
     })
-    
     ```
 
 5. 启动后端服务，项目根目录下执行 ```node questionnaire```。  
