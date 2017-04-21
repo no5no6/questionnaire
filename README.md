@@ -18,7 +18,18 @@
 (2). 用命令行进入mongodb，输入并执行 ```mongo```。  
 (3). 创建questionnaire数据库，输入并执行 ```use questionnaire```。  
 (4). 创建用户，输入并执行  
-```db.createUser({user:'ky1', pwd:'123', roles:[{"role" : "readWrite", "db": "questionnaire"}]})```。  
+    ```
+    db.createUser({
+      user:'ky1',
+      pwd:'123',
+      roles:[
+        {
+          "role" : "readWrite",
+          "db": "questionnaire"
+        }
+      ]
+    })
+    ```
 
 5. 启动后端服务，项目根目录下执行 ```node questionnaire```。  
 6. 启动前端服务，项目questionnaire_web目录下执行 ```npm run dev```。  
