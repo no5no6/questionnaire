@@ -1,0 +1,1 @@
+../../mongodb/bin/mongodump -h 127.0.0.1 --port 27017 -u ky1 -p 123 -d questionnaire -o backup/$(date +%Y%m%d%H%M%S)

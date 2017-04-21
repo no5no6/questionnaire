@@ -1,0 +1,24 @@
+{
+  "name": "questionnaire",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node questionnaire.js"
+  },
+  "dependencies": {
+    "async": "~2.0.1",
+    "cron": "^1.2.1",
+    "express": "~3.3.1",
+    "install": "^0.8.7",
+    "jade": "*",
+    "lodash": "~4.14.1",
+    "moment": "~2.14.1",
+    "mongodb": "~2.2.5",
+    "mongoose": "~4.5.8",
+    "msexcel-builder": "0.0.2",
+    "node-schedule": "^1.2.0",
+    "nodemailer": "^3.1.3",
+    "npm": "^4.2.0",
+    "superagent": "^3.4.4"
+  }
+}
