@@ -3,7 +3,7 @@ var moment = require('moment');
 
 app.put('/questionnaireTemplate/:id', function(req, res){
   var QuestionnaireTemplate = app.models.QuestionnaireTemplate;
-  // var status = req.body.status;
+  var data = req.body;
   var id = req.params.id
 
   QuestionnaireTemplate.retrieveById({id: id}, function(error, questionnaireTemplate){

@@ -63,21 +63,15 @@
       }
     },
     methods: {
-      ...mapActions(['setAnswerList', 'unSetAnswerList', 'getQuestionnaireTemplateById']),
+      ...mapActions(['setAnswerList', 'unSetAnswerList']),
       init() {
-        console.log(this.$route.query.questionnaireTemplateId, 'this.$route.query.questionnaireTemplateId');
         this.bindEvent();
         this.clear(); // 初始化问题和答案
-        // 编辑模板
-        if(this.$route.query.questionnaireTemplateId) {
-          this.getQuestionnaireTemplateById(this.$route.query.questionnaireTemplateId)
-        }
-
       },
       bindEvent() {
         bus.$on('setQuestion', (index) => {
           this.selectedIndex = index;
-          this.question = this.QuestionnaireTemplate.template.topic[index];
+          this.question = _.cloneDeep(this.QuestionnaireTemplate.template.topic[index]);
         });
 
         this.$watch('question.type', y => {
@@ -94,9 +88,8 @@
       save() {
         if(this.question.type === '打分' || this.question.type === '问答') {
           this.question = _.omit(this.question, 'options')
-          console.log(this.question, 'qqqqqqqqq');
         }
-        this.setAnswerList(this.question);
+        this.setAnswerList({question: this.question, index: this.selectedIndex});
         this.clear();
       },
       clear() {

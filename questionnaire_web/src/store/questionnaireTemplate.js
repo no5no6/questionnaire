@@ -17,8 +17,12 @@ const mutations = {
   getQuestionnaireTemplateList (state, data) {
     state.list = data;
   },
-  setAnswerList(state, data) {
-    state.template.topic.push(_.cloneDeep(data));
+  setAnswerList(state, {question, index}) {
+    if(index === -1){
+      state.template.topic.push(_.cloneDeep(question));
+    }else {
+      state.template.topic[index] = _.cloneDeep(question);
+    }
   },
   unSetAnswerList(state, {index}) {
     state.template.topic.splice(index, 1);
@@ -26,12 +30,15 @@ const mutations = {
   setQuestionnaireTitle(state, {title}) {
     state.template.title = title;
   },
+  clearAnswerList(state) {
+    state.template.topic = [];
+  },
   setQuestionnaireTemplateById(state, data) {
     state.template = data;
   },
   removeTemplateById(state, {index}) {
-    state.list = state.list.splice(index, 1);
-  }
+    state.list = state.list.splice(index - 1, 1);
+  },
 
 }
 //http://localhost:3000/questionnaireTemplets
@@ -64,7 +71,7 @@ const actions = {
   },
   unSetAnswerList({commit, state}, data) {
     return new Promise((resolve, reject) => {
-      if(state.templateId) {
+      if(state.template._id) {
 
       }else {
         commit('unSetAnswerList', data);
@@ -77,8 +84,15 @@ const actions = {
   },
   saveQuestionnaireTemplate() {
     return new Promise((resolve, reject) => {
-      if(state.templateId) {
-
+      if(state.template._id) {
+        axios.put(`${bus.host}/questionnaireTemplate/${state.template._id}`, state.template)
+          .then(function ({data}) {
+            //commit('getQuestionnaireTemplateById', data);
+            resolve(null, data);
+          })
+          .catch(function (error) {
+            resolve(error);
+          });
       }else {
         axios.post(`${bus.host}/questionnaireTemplate`, state.template)
           .then(function ({data}) {
@@ -104,6 +118,10 @@ const actions = {
         });
 
     });
+  },
+  clearTemplate({commit, state}) {
+    commit('setQuestionnaireTitle', {title: ''});
+    commit('clearAnswerList');
   }
 }
 

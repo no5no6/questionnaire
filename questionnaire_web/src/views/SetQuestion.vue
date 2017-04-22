@@ -43,10 +43,16 @@
       }
     },
     methods: {
-      ...mapActions(['setQuestionnaireTitle', 'saveQuestionnaireTemplate']),
+      ...mapActions(['setQuestionnaireTitle', 'saveQuestionnaireTemplate', 'clearTemplate', 'getQuestionnaireTemplateById']),
       init() {
         this.bindEvent();
-        this.title = this.QuestionnaireTemplate.template.title;
+        // 编辑模板
+        if(this.$route.query.questionnaireTemplateId) {
+          this.getQuestionnaireTemplateById({id: this.$route.query.questionnaireTemplateId}).then(y => {
+            this.title = _.cloneDeep(this.QuestionnaireTemplate.template.title);
+          });
+        }
+        //this.title = this.QuestionnaireTemplate.template.title;
       },
       bindEvent() {
       },
@@ -60,6 +66,7 @@
               this.showError('保存失败');
             }else {
               this.showSuccess('保存成功');
+              this.clear();
               this.$router.replace({path: '/questionList'});
             }
           });
@@ -70,6 +77,9 @@
         if(this.title === '') return this.showWarning('问卷模板名称不能为空');
         if(this.QuestionnaireTemplate.template.topic.length < 1) return this.showWarning('问卷模板至少包含一个问题');
         return true
+      },
+      clear() {
+        this.clearTemplate();
       },
       showWarning(message) {
         this.$notify({
