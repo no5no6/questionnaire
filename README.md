@@ -5,9 +5,13 @@
 
 ## 主要功能
 1. 设置问卷模板。  
+![set](set.gif)
 2. 选择模板生成问卷。  
+![setQ](setQ.gif)
 3. 用户填写问卷。  
-4. 统计问卷。 
+![answer](answer.gif)
+4. 统计问卷。  
+![statistics](statistics.gif)
 
 ## 使用与安装
 1. 下载代码 ```git clone https://github.com/no5no6/questionnaire.git```。  
