@@ -37,7 +37,7 @@ const mutations = {
     state.template = data;
   },
   removeTemplateById(state, {index}) {
-    state.list = state.list.splice(index - 1, 1);
+    state.list.splice(index, 1);
   },
 
 }
