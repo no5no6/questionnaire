@@ -3,6 +3,12 @@
 前端主要框架与库：[Vue](https://github.com/vuejs/vue)、[Element](http://element.eleme.io)、[Vuex](https://vuex.vuejs.org)、[Vue-Router](http://router.vuejs.org/)  
 后端主要框架与库：[express](http://expressjs.com/)、[mongodb](https://www.mongodb.com/)、[mongoose](http://mongoosejs.com/)
 
+## 业务逻辑
+1. 用户需先在模板管理页面创建问卷模板，再在问卷管理页面，选中该模板创建新的问卷。
+2. 一个模板可对应多个（期）问卷，例：消费调查模板可对应，1月份消费调查问卷、2月份消费调查问卷、3月份消费调查问卷等，但同一模板下只允许一个（期）问卷为打开状态。
+3. 点击问卷管理页面的查看按钮，获得问卷填写链接，此链接发给所有需要做问卷调查的用户，如果已填写过此期问卷则不能重复填写。
+4. 问卷统计目前只能统计某一期的投票数据，暂不支持以模板为主体，统计该模板下多期综合投票数据。
+
 ## 主要功能
 1. 设置问卷模板。  
 ![set](set.gif)  
