@@ -83,12 +83,15 @@
           this.preview = this.questionnaireId;
           this.previewQuestionnaire(this.QuestionnaireTemplate.template);
         }else {
-          if (localData && localData.id === this.questionnaireId) {
+          if(localData && localData.id === this.questionnaireId) {
             this.$router.push({path: '/success'});
           }else {
             this.getQuestionnaireEachById({id: this.questionnaireId}).then((eachData) => {
+              console.log(eachData, 'eachData');
               if(!eachData) {
                 this.$router.push({path: '/error'});
+              }else if(!eachData.status) {
+                this.$router.push({path: '/close'});
               } else {
                 this.setQuestionnaire(eachData)
               }

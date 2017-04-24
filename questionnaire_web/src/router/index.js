@@ -5,6 +5,7 @@ import Statistics from '../views/Statistics';
 import Questionnaire from '../views/Questionnaire';
 import Success from '../views/Success';
 import Error from '../views/Error';
+import Close from '../views/Close';
 
 export default [
     {
@@ -38,5 +39,9 @@ export default [
     {
         path: '/error',
         component: Error
+    },
+    {
+        path: '/close',
+        component: Close
     }
 ];

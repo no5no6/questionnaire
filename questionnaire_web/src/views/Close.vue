@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div>访问出错！</div>
+    <div>问卷为开启或已关闭</div>
   </div>
 </template>
 
 <script>
 
   export default {
-    name: 'Error'
+    name: 'Close'
   }
 </script>
 
