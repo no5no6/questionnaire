@@ -108,9 +108,6 @@
         });
       }
     },
-    // components: {
-    //
-    // },
     computed: {
       ...mapState({
         QuestionnaireTemplate: state => state.QuestionnaireTemplate
@@ -123,10 +120,5 @@
 </script>
 
 <style>
-  /*#row-1 {
-    height: 650px;
-  }
-  #f-div {
-    padding-left: 10px;
-  }*/
+
 </style>

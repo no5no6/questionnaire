@@ -54,7 +54,7 @@ questionnaireTemplateSchema.statics.retrieve = function(param, callback) {
 }
 
 questionnaireTemplateSchema.statics.retrieveById = function(param, callback) {
-  this.findOne({_id: new mObjectId(param.id), status: true})
+  this.findOne({_id: new mObjectId(param.id)})
   .select(param.items ? param.items.join(' ') : '')
   .exec(function(error, questionnaire){
     if(error) return callback(error);

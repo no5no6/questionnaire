@@ -5,41 +5,10 @@
 </template>
 
 <script>
-  // import _ from 'lodash';
-  // import { mapActions, mapState } from 'vuex';
-
   export default {
-    name: 'Index',
-    data(){
-      return {
-        fullscreenLoading: false
-      }
-    },
-    // methods: {
-    //   ...mapActions([]),
-    //   init() {
-    //     console.log('12312312312');
-    //   },
-    // },
-    // components: {
-    //
-    // },
-    // computed: {
-    //   ...mapState({
-    //     Question: state => state.question,
-    //   }),
-    // },
-    // mounted() {
-    //   this.init();
-    // }
+    name: 'Success'
   }
 </script>
 
 <style>
-  /*#row-1 {
-    height: 650px;
-  }
-  #f-div {
-    padding-left: 10px;
-  }*/
 </style>

@@ -3,7 +3,7 @@
     <el-row type="flex" justify="center" align="middle" >
       <h1>{{questionnaireName}}</h1>
     </el-row>
-    <el-row type="flex" justify="left" align="middle" v-for="(topic, index) in Questionnaire.template.topic" :key="topic._id">
+    <el-row v-if="result.answer.length > 0" type="flex" justify="left" align="middle" v-for="(topic, index) in Questionnaire.template.topic" :key="topic._id">
       <el-col>
         <el-row type="flex" justify="left" align="middle">{{`${index + 1}、${topic.question}`}}{{topic.must ? "（必填）" : "（选填）"}}</el-row>
         <el-row class="questionRow" v-if="topic.type === '单选'" type="flex" justify="left" align="middle" >
@@ -57,6 +57,7 @@
     name: 'Questionnaire',
     data(){
       return {
+        questionnaireId: '',
         questionnaireName: '',
         rate: null,
         radio: [],
@@ -75,18 +76,17 @@
       ...mapActions(['getQuestionnaireTemplateById', 'setTemplate', 'getQuestionnaireEachById', 'saveQuestionnaire', 'getUserInfoById', 'authUserFinishedQuestionnaire']),
       init() {
 
-        console.log(this.$route.query, 'list-this.$route.query');
-        let id = this.$route.params.id;
         let localData = JSON.parse(localStorage.getItem('questionnaire'));
+        this.questionnaireId = this.$route.params.id;
 
-        if(id === 'preview') {
-          this.preview = id;
+        if(this.questionnaireId === 'preview') {
+          this.preview = this.questionnaireId;
           this.previewQuestionnaire(this.QuestionnaireTemplate.template);
         }else {
-          if (localData) {
+          if (localData && localData.id === this.questionnaireId) {
             this.$router.push({path: '/success'});
           }else {
-            this.getQuestionnaireEachById({id}).then((eachData) => {
+            this.getQuestionnaireEachById({id: this.questionnaireId}).then((eachData) => {
               if(!eachData) {
                 this.$router.push({path: '/error'});
               } else {
@@ -113,7 +113,6 @@
         });
       },
       putResultAnswer(data) {
-        console.log(data, 'data');
         data.topic.forEach((item) => {
           if(item.type === '单选'){
             if(item.allowAddReasonStatus) {
@@ -126,11 +125,9 @@
           }else if(item.type === '问答') {
             this.result.answer.push({topicId: item._id, number: item.number, must: item.must, question: item.question, type: item.type, selectContent: ''});
           }else {
-            // this.result.answer.push({topicId: item._id, number: item.number, must: item.must, question: item.question, type: item.type, selectContent: 0, grade: {begin: item.grade.begin, end: item.grade.end, type: item.grade.type}});
-this.result.answer.push({topicId: item._id, number: item.number, must: item.must, question: item.question, type: item.type, selectContent: 0 });
+            this.result.answer.push({topicId: item._id, number: item.number, must: item.must, question: item.question, type: item.type, selectContent: 0 });
           }
         });
-        console.log(this.result.answer, 'data2');
       },
       dataIsNum() {
         return this.result.answer.some((item) => {
@@ -154,7 +151,7 @@ this.result.answer.push({topicId: item._id, number: item.number, must: item.must
                 message: '提交失败'
               });
             }else {
-              localStorage.setItem('questionnaire', `{"date": "${moment().format('YYYY-MM-DD')}"}`);
+              localStorage.setItem('questionnaire', `{"date": "${moment().format('YYYY-MM-DD')}", "id": "${this.questionnaireId}"}`);
               this.$notify({
                 title: '成功',
                 message: '感谢您的参与，问卷提交成功！',
@@ -171,19 +168,7 @@ this.result.answer.push({topicId: item._id, number: item.number, must: item.must
           });
         }
 
-        // this.result.answer.forEach((item) => {
-        //
-        // })
-      },
-      changeRadio(val) {
-        console.log(val, 'changeRadio');
-      },
-      changeCheckbox(val) {
-        console.log(val, 'changeCheckbox');
       }
-    },
-    components: {
-
     },
     computed: {
       ...mapState({

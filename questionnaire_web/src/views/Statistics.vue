@@ -52,14 +52,10 @@
         </el-row>
       </el-col>
     </el-row>
-    <!-- <el-row type="flex" justify="center" align="middle" >
-      <el-button type="primary" @click="finished">返回</el-button>
-    </el-row> -->
   </div>
 </template>
 
 <script>
-  // import _ from 'lodash';
   import { mapActions, mapState } from 'vuex';
 
   export default {
@@ -76,7 +72,6 @@
         this.getQuestionnaireList({questionnaireId: this.$route.query.questionnaireId}).then((questionnaireList) => {
           questionnaireList = this.putCheckboxData(questionnaireList);
           questionnaireList = this.countResult(questionnaireList);
-          console.log(questionnaireList, '111111');
           this.setQuestionnaireList(questionnaireList)
         });
       },
@@ -136,7 +131,6 @@
               return memo;
             }, 0);
 
-            // _.assignIn(question, {scroe, personSum: question.result.length, hightest: question.result[0].grade.end});
             _.assignIn(question, {scroe, personSum: question.result.length, hightest: 10});
           }
 

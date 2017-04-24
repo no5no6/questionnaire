@@ -27,13 +27,10 @@
 </template>
 
 <script>
-  // import _ from 'lodash';
   import { mapActions, mapState } from 'vuex';
   import SetAnswer from '../components/SetAnswer';
   import QuestionList from '../components/QuestionList';
   import bus from '../utils/bus';
-  // import QuestionList from '../components/QuestionList'
-
 
   export default {
     name: 'SetQuestion',
@@ -52,7 +49,6 @@
             this.title = _.cloneDeep(this.QuestionnaireTemplate.template.title);
           });
         }
-        //this.title = this.QuestionnaireTemplate.template.title;
       },
       bindEvent() {
       },
@@ -73,7 +69,6 @@
         }
       },
       validate() {
-        console.log(this.QuestionnaireTemplate.template.topic, 'this.QuestionnaireTemplate.list.topic');
         if(this.title === '') return this.showWarning('问卷模板名称不能为空');
         if(this.QuestionnaireTemplate.template.topic.length < 1) return this.showWarning('问卷模板至少包含一个问题');
         return true
@@ -106,7 +101,6 @@
     components: {
       SetAnswer,
       QuestionList
-      // QuestionList
     },
     computed: {
       ...mapState({
@@ -124,8 +118,6 @@
     padding-top: 20px;
   }
   .markSetRow {
-    /*background: #E5E9F2;*/
-    /*height: 100px;*/
     padding-bottom: 25px;
   }
   .backNextRow {

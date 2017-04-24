@@ -34,7 +34,6 @@ const actions = {
         })
         .catch(function (error) {
           resolve();
-          // console.log(error, 'questionnaireEach');
         });
     });
   },
@@ -45,7 +44,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.post(`${bus.host}/questionnaireEach`, param)
         .then(function ({data}) {
-          // commit('getQuestionnaireEachList', data);
           resolve();
         })
         .catch(function (error) {
@@ -57,11 +55,9 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.patch(`${bus.host}/questionnaireEach/${param.id}/status`, {status: param.status})
         .then(function ({data}) {
-          // commit('getQuestionnaireEachList', data);
           resolve(data);
         })
-        .catch(function (error, d) {
-          console.log(d, 'ddddddd')
+        .catch(function (error) {
           resolve();
         });
     });

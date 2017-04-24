@@ -38,11 +38,10 @@
 </template>
 
 <script>
-  // import _ from 'lodash';
   import { mapActions, mapState } from 'vuex';
 
   export default {
-    name: 'Index',
+    name: 'SetQuestionnaireTemplate',
     data(){
       return {
         fullscreenLoading: false
@@ -50,9 +49,6 @@
     },
     methods: {
       ...mapActions(['removeTemplateById']),
-      init() {
-        console.log('12312312312');
-      },
       remove(templateId, index) {
         this.removeTemplateById({templateId: templateId, index: index}).then((error) => {
           if(error){
@@ -70,25 +66,13 @@
         });
       }
     },
-    // components: {
-    //
-    // },
     computed: {
       ...mapState({
         QuestionnaireTemplate: state => state.QuestionnaireTemplate,
       }),
-    },
-    mounted() {
-      this.init();
     }
   }
 </script>
 
 <style>
-  /*#row-1 {
-    height: 650px;
-  }
-  #f-div {
-    padding-left: 10px;
-  }*/
 </style>

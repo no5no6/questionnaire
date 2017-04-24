@@ -41,7 +41,7 @@ const mutations = {
   },
 
 }
-//http://localhost:3000/questionnaireTemplets
+
 const actions = {
   getQuestionnaireTemplateList({commit, state}) {
     return new Promise((resolve, reject) => {
@@ -87,7 +87,6 @@ const actions = {
       if(state.template._id) {
         axios.put(`${bus.host}/questionnaireTemplate/${state.template._id}`, state.template)
           .then(function ({data}) {
-            //commit('getQuestionnaireTemplateById', data);
             resolve(null, data);
           })
           .catch(function (error) {
@@ -96,7 +95,6 @@ const actions = {
       }else {
         axios.post(`${bus.host}/questionnaireTemplate`, state.template)
           .then(function ({data}) {
-            //commit('getQuestionnaireTemplateById', data);
             resolve(null, data);
           })
           .catch(function (error) {
@@ -107,7 +105,6 @@ const actions = {
   },
   removeTemplateById({commit, state}, {templateId, index}) {
     return new Promise((resolve, reject) => {
-
       axios.patch(`${bus.host}/questionnaireTemplate/${templateId}/remove`)
         .then(function ({data}) {
           commit('removeTemplateById', {index});
@@ -126,12 +123,7 @@ const actions = {
 }
 
 const getters = {
-  // getRangeTime (state){
-  //   return {
-  //     begin: utils.getFormatTimeByArr(state.beginDotTime),
-  //     end: utils.getFormatTimeByArr(state.endDotTime)
-  //   }
-  // }
+
 }
 
 export default {

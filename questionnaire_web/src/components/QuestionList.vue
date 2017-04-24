@@ -11,7 +11,6 @@
 </template>
 
 <script>
-  // import _ from 'lodash'
   import bus from '../utils/bus';
   import { mapActions, mapState } from 'vuex';
 
@@ -24,25 +23,15 @@
       }
     },
     methods: {
-      // ...mapActions([]),
-      init() {
-        console.log('12312313');
-      },
       selectedRow(index) {
-        console.log(index);
         this.selectRow=index;
         bus.$emit('setQuestion', index);
       }
     },
-    // components: {
-    // },
     computed: {
       ...mapState({
         QuestionnaireTemplate: state => state.QuestionnaireTemplate
       }),
-    },
-    mounted() {
-      this.init();
     }
   }
 </script>

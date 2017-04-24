@@ -66,11 +66,10 @@
 </template>
 
 <script>
-  // import _ from 'lodash';
   import { mapActions, mapState } from 'vuex';
 
   export default {
-    name: 'Index',
+    name: 'SetQuestionnaire',
     data(){
       return {
         questionnaireName: '',
@@ -92,8 +91,6 @@
             type: 'success'
           });
         });
-        // console.log(this.questionnaireName, 'questionnaireName');
-        // console.log(this.questionnaireTemplateId, 'questionnaireTemplateId');
       },
       changeStatus(id, status) {
         this.changeQuestionnaireEachStatus({id, status}).then((data) => {
@@ -116,9 +113,6 @@
       },
 
     },
-    // components: {
-    //
-    // },
     computed: {
       ...mapState({
         Question: state => state.question,
@@ -137,10 +131,4 @@
 </script>
 
 <style>
-  /*#row-1 {
-    height: 650px;
-  }
-  #f-div {
-    padding-left: 10px;
-  }*/
 </style>
