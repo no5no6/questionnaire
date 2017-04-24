@@ -5,11 +5,14 @@
 
 ## 主要功能
 1. 设置问卷模板。  
-![set](set.gif)
+![set](set.gif)  
+
 2. 选择模板生成问卷。  
-![setQ](setQ.gif)
+![setQ](setQ.gif)  
+
 3. 用户填写问卷。  
-![answer](answer.gif)
+![answer](answer.gif)  
+
 4. 统计问卷。  
 ![statistics](statistics.gif)
 
@@ -37,8 +40,25 @@
 6. 启动前端服务，项目questionnaire_web目录下执行 ```npm run dev```。  
 7. 打开浏览器，访问 [localhost:8080/#/questionList](http://localhost:8080/#/questionList)。  
 
-## 业务逻辑
-
 ## 项目结构
-
+```
+├── db                 // 备份数据库脚本
+├── models             // 数据库模型目录
+├── public
+│   └── web            // 前端打包后运行文件目录
+│
+├── questionnaire_web  // 前端目录
+│   ├── src
+│   │   ├── components // 组件目录
+│   │   ├──router      // 路由目录（vue-router）
+│   │   ├── store      // 模型目录(vuex)
+│   │   ├── views      // 视图目录
+│   │   └── main.js    // 前端入口文件
+│   ├── index.html     // 首页
+│   └── package.json   // 前端包管理文件
+│
+├── router             // 接口目录
+├── package.json       // 后端包管理文件
+└── questionnaire.js   // 项目主进程
+```
 
