@@ -10,16 +10,19 @@
 4. 问卷统计目前只能统计某一期的投票数据，暂不支持以模板为主体，统计该模板下多期综合投票数据。
 
 ## 主要功能
-1. 设置问卷模板。  
-![set](set.gif)  
+1. 管理员登录 (控制开启、关闭低多边形背景动画。PS:目前版本开启背景动画对电脑性能考验较大，建议关闭)  
+![login](login.gif)  
 
-2. 选择模板生成问卷。  
+2. 设置问卷模板。  
 ![setQ](setQ.gif)  
 
-3. 用户填写问卷。  
+3. 选择模板生成问卷。  
+![set](set.gif)  
+
+4. 用户填写问卷。  
 ![answer](answer.gif)  
 
-4. 统计问卷。  
+5. 统计问卷。  
 ![statistics](statistics.gif)
 
 ## 使用与安装
@@ -41,10 +44,23 @@
           }]
         })
       ```
-
-5. 启动后端服务，项目根目录下执行 ```node questionnaire```。  
-6. 启动前端服务，项目questionnaire_web目录下执行 ```npm run dev```。  
-7. 打开浏览器，访问 [localhost:8080/#/questionList](http://localhost:8080/#/questionList)。  
+      
+5. 启动后端服务，项目根目录下执行 ```node questionnaire```。  
+6. 创建管理员  
+(1). 打开终端窗口（Terminal）。  
+(2). 用命令行进入mongodb，输入并执行 ```mongo```。  
+(3). 创建questionnaire数据库，输入并执行 ```use questionnaire```。  
+(4). 创建用户，输入并执行  
+      ```
+        db.users.insert({
+          name: "admin", 
+          password: "123", 
+          organization: 'test' 
+        })
+      ```
+      
+7. 启动前端服务，项目questionnaire_web目录下执行 ```npm run dev```。  
+8. 打开浏览器，访问 [localhost:8080/#/questionList](http://localhost:8080/#/questionList)。(PS:填写问卷时只需将查看地址发给所有需要填写问卷的用户)  
 
 ## 项目结构
 ```
