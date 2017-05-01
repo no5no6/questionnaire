@@ -40,7 +40,7 @@
       </el-col>
     </el-row>
     <el-row type="flex" justify="center" align="middle" >
-      <router-link v-if="preview" :to="{ path: '/setQuestion' }" replace>
+      <router-link v-if="preview" :to="{ path: '/setQuestion' }" >
         <el-button  type="primary" >返回</el-button>
       </router-link>
       <el-button v-else type="primary" @click="finished">提交问卷</el-button>

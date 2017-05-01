@@ -47,6 +47,8 @@
           this.getQuestionnaireTemplateById({id: this.$route.query.questionnaireTemplateId}).then(y => {
             this.title = _.cloneDeep(this.QuestionnaireTemplate.template.title);
           });
+        }else {
+          this.title = this.QuestionnaireTemplate.template.title;
         }
       },
       bindEvent() {
