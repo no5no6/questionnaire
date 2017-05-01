@@ -2,6 +2,8 @@
  * 主服务
  */
 var express = require('express');
+var session = require("express-session");
+var RedisStore = require('connect-redis')(session);
 var http    = require('http');
 var path    = require('path');
 var app     = express();
@@ -23,17 +25,39 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+var options = {
+  host: "127.0.0.1",
+  port: "6379",
+  ttl: 60 * 60 * 24 * 30, //Session的有效期为30天
+};
+// 此时req对象还没有session这个属性
+app.use(session({
+  store: new RedisStore(options),
+  secret: 'express is powerful',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(function(req,res,next){
+  if (!req.session.userName) {
+    res.redirect('/web/question')
+    next();
+  }else {
+    next();
+  }
+});
+
 // 解决跨域
 var origin = [/\/user/, /\/user\/*/, /\/statistics/, /\/statistics\/*/, /\/questionnaire/, /\/questionnaire\/*/, /\/questionnaireTemplate/, /\/questionnaireTemplate\/*/, /\/questionnaireEach/, /\/questionnaireEach\/*/];
 
 app.all('*', function(req, res, next){
-  console.log(req.path, 'req.path')
+
   var istrue = origin.some(function(url){
     return url.test(req.path);
   });
-
+  console.log(req.path, 'req.path', istrue)
   if(istrue){
-    // res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Credentials', true);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -60,11 +84,7 @@ if ('development' == app.get('env')) {
 
 // 引入api
 require('./routes/user/addUser');
-require('./routes/user/retrieveConfig');
-require('./routes/user/retrieveUserByName');
-require('./routes/user/retrieveUserById');
-require('./routes/user/retrieveUsersGroup');
-require('./routes/user/removeUserByName');
+require('./routes/user/login');
 
 require('./routes/statistics/questionnaireResult');
 

@@ -1,13 +1,29 @@
 <template>
-  <div>
-    <div>你请求的页面不存在，也可能去了月球！</div>
+  <div class="widthHeight100">
+    <login></login>
   </div>
 </template>
 
 <script>
 
+  import Login from '../components/Login';
+
   export default {
-    name: 'Index'
+    name: 'Index',
+    data(){
+      return {
+
+      }
+    },
+    methods: {
+
+    },
+    components: {
+      Login
+    },
+    mounted() {
+      // this.init();
+    }
   }
 </script>
 

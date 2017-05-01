@@ -4,23 +4,13 @@ var ObjectId = Schema.ObjectId;
 var event    = require('../Shared/event.js');
 
 /***
- * 静态数据
- */
-var STATIC_DEPARTMETS = ['技术开发部', '产品部', '市场部', '销售部', '运营部', '商务拓展部', '项目管理部', '终端商务拓展部', '人事行政部', '财务部', '大数据研究部', '总裁办'];
-var STATIC_LUNCH_GROUP = ['A', 'B', 'C'];
-var STATIC_ROLES = ['审核人', '用户', '管理员', '财务', '无审核人'];
-var STATIC_AUDITORS = ['陈军', '张斓', '李树群', '陈晓梅', '杨德宝', '王斌', '张猛', '陆承恩', '张偶', '周敬', '李静楠', '冯锴', '胡芳', '高蔚', '吕海媛'];
-
-/***
  * 模型
  */
 var userSchema = {
   uid: String,
   name: String,
-  department: String,
-  lunchGroup: String,
-  auditor: String,
-  role: {type: String, default: '用户'},
+  password: String,
+  organization: String,
   operation: event
 }
 
@@ -75,6 +65,15 @@ userSchema.statics.retrieveByObjectId = function(id, callback, items){
 
 userSchema.statics.retrieveByName = function(name, callback, items){
   this.findOne({name: name})
+  .select(items ? items.join(' ') : '')
+  .exec(function(error, user){
+    if(error) return callback(error);
+    callback(null, user);
+  });
+}
+
+userSchema.statics.retrieveLoginUser = function(param, callback, items){
+  this.findOne({name: param.userName, password: param.password})
   .select(items ? items.join(' ') : '')
   .exec(function(error, user){
     if(error) return callback(error);

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "element-ui": "^1.2.5",
+    "element-ui": "^1.2.9",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "vue": "^2.2.2",

@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import App from './App'
 import VueRouter from 'vue-router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
@@ -25,13 +24,7 @@ router.beforeEach(({path}, from, next) => {
 */
 bus.host = 'http://localhost:3000'
 
-new Vue({
+const app = new Vue({
   store,
-  router,
-  render: h => h(App),
-}).$mount('#app');
-
-// const app = new Vue({
-//   store,
-//   router
-// }).$mount('#app')
+  router
+}).$mount('#app')

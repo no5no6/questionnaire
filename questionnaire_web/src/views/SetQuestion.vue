@@ -30,7 +30,6 @@
   import { mapActions, mapState } from 'vuex';
   import SetAnswer from '../components/SetAnswer';
   import QuestionList from '../components/QuestionList';
-  import bus from '../utils/bus';
 
   export default {
     name: 'SetQuestion',
