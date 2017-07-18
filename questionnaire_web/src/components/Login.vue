@@ -63,6 +63,7 @@
               if(data){
                 this.$notify({title: '成功', message: '登录成功', type: 'success'});
                 sessionStorage.setItem("userName", this.userName);
+                //document.cookie = `userName=${this.userName}`;
                 this.$router.push({path: '/questionList'});
               }else {
                 this.$notify.error({title: '错误', message: '登录失败'});

@@ -9,6 +9,9 @@ import routes from './router/index';
 import bus from './utils/bus';
 import axios from 'axios';
 
+// 默认发送api时候带着cookie
+axios.defaults.withCredentials = true;
+
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 
